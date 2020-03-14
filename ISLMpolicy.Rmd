@@ -1,6 +1,6 @@
 ---
 title: "ISLM policy"
-author: "Dr. J"
+author: "Brandon Medina"
 date: "3/10/2020"
 output: html_document
 ---
@@ -134,10 +134,10 @@ interestRate = libor
 
 For this exercise assume Full Employment GDP is $21700B, and Nx = -500
 
- 1. Given the last values of the variables, (estimates of current US       macroeconomic values), what is the equilibrium level of GDP predicted by IS_Y?  What does this GDP suggest about possible recession?
+ 1. Given the last values of the variables, (estimates of current US macroeconomic values), what is the equilibrium level of GDP predicted by IS_Y?  What does this GDP suggest about possible recession?
  
 
- 2. Policy- the COVID19 virus will likely reduce GDP  by 1 or 2 % and     change Nx by about 5% or more (we import less).  Given this, What policy measures does the IS-LM model suggest as guidelines to maintain full-employment GDP?    
+ 2. Policy- the COVID19 virus will likely reduce GDP  by 1 or 2 % and change Nx by about 5% or more (we import less).  Given this, What policy measures does the IS-LM model suggest as guidelines to maintain full-employment GDP?    
 
 ##  FUNCTIONS -------------------------------------------------- 
 
@@ -243,8 +243,8 @@ netX =-490 # Estimate decrease in net exports, can change a bit
 intR = 1.0 # current rate is around 1%
 
 #Fiscal policy--  change these to get an idea of gov't fiscal policy
-Tax = 2010  # tax cut??
-g_Spend = 7600  # increase government spending? usually happens in an 
+Tax = 3000  # tax cut??
+g_Spend = 6600  # increase government spending? usually happens in an 
                 #  election year
 
 C = consumption(Y_FE, Tax, C0, b)
@@ -265,11 +265,25 @@ Using interest rate from IS above, find money supply (mOp) to match equilibIntRa
 # Monetary policy set money supply
 #Monetary policy change his to change equilibrium interest; This plays a
 # role in the LM equation
-mOp = 4950 # money supply
+mOp = 3780.9 # money supply
 
-LM_i(mOp,Y_FE, M0, m1, m2)
+predInt = LM_i(mOp,Y_FE, M0, m1, m2)
+print(paste('predicted interest = ',round(predInt,3)))
 ```
 <!-- negative interest rates are not OK; need a value near 1% -->
+
+
+```{r}
+Tax = 3000
+print(paste ('tax = ', Tax))
+g_Spend = 3881
+print(paste('g_Spend = ',g_Spend))
+Ypred = IS_Y(C0, b, I0, dY, dInt, predInt, Tax, g_Spend, netX)
+print(paste('pred Y = ',Ypred))
+print(paste('Full Employment GDP = ', Y_FE))
+```
+
+
 
 
 
